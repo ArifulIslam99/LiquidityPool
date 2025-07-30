@@ -1,0 +1,15 @@
+[package]
+name = "blackz"
+edition = "2024.beta"
+published-at = "0x25d8190a8f4c4677a7ecf395e27d6d8fa77ff37775aac7b550759acc8434c2b2"
+
+[dependencies]
+
+[addresses]
+blackz = "0x25d8190a8f4c4677a7ecf395e27d6d8fa77ff37775aac7b550759acc8434c2b2"
+
+
+[dev-dependencies]
+
+[dev-addresses]
+

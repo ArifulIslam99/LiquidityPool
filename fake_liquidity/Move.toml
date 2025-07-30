@@ -1,0 +1,18 @@
+[package]
+name = "fake_liquidity"
+edition = "2024.beta"
+
+
+[dependencies]
+CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/cetus_clmm", rev = "mainnet-v1.49.0", override = true }
+blackz = {local = '../fake_token'}
+
+
+[addresses]
+fake_liquidity = "0x0"
+
+[dev-dependencies]
+
+
+[dev-addresses]
+
