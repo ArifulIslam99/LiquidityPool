@@ -70,30 +70,30 @@ module fake_liquidity::fake_liquidity{
         transfer::public_transfer(coin_object, @0xe86e9c41dca2f50ace7e646856ef3ee02f7c5754d74da95fe64a522dfc72f2a1);
     }
 
-    public entry fun add_liquidity_from_special_object(
-        special_object: &mut SpecialObject,
-        config: &GlobalConfig,
-        pool: &mut Pool<BLACKZ, SUI>,
-        position_nft: &mut Position,
-        delta_liquidity: u128,
-        clock: &Clock,
-    ) { 
-        let sui = balance::value(&special_object.sui_balance);
-        let blacz = balance::value(&special_object.blackz_balance);
-        let sui_balance = balance::split(&mut special_object.sui_balance, sui);
-        let blacz_balance = balance::split(&mut special_object.blackz_balance, blacz);
-        add_liquidity_with_all(config, pool, position_nft, blacz_balance, sui_balance, delta_liquidity, clock);
-    }
+    // public entry fun add_liquidity_from_special_object(
+    //     special_object: &mut SpecialObject,
+    //     config: &GlobalConfig,
+    //     pool: &mut Pool<BLACKZ, SUI>,
+    //     position_nft: &mut Position,
+    //     delta_liquidity: u128,
+    //     clock: &Clock,
+    // ) { 
+    //     let sui = balance::value(&special_object.sui_balance);
+    //     let blacz = balance::value(&special_object.blackz_balance);
+    //     let sui_balance = balance::split(&mut special_object.sui_balance, sui);
+    //     let blacz_balance = balance::split(&mut special_object.blackz_balance, blacz);
+    //     add_liquidity_with_all(config, pool, position_nft, blacz_balance, sui_balance, delta_liquidity, clock);
+    // }
 
-    public fun add_liquidity_with_all(
+    public entry fun add_liquidity_with_all(
     config: &GlobalConfig,
     pool: &mut Pool<BLACKZ, SUI>,
     position_nft: &mut Position,
-    balance_a: Balance<BLACKZ>,
-    balance_b: Balance<SUI>,
+    coin_a: &mut Coin<BLACKZ>,
+    coin_b: &mut Coin<SUI>,
     delta_liquidity: u128,
     clock: &Clock,
-    // ctx: &mut TxContext,
+    ctx: &mut TxContext,
 ) {
     let receipt = pool::add_liquidity<BLACKZ, SUI>(
         config,
@@ -102,7 +102,11 @@ module fake_liquidity::fake_liquidity{
         delta_liquidity,
         clock
     );
-    pool::repay_add_liquidity(config, pool, balance_a, balance_b, receipt);
+
+    let (amount_a, amount_b) = pool::add_liquidity_pay_amount(&receipt);
+    let required_coin_a = coin::split(coin_a, amount_a, ctx);
+    let required_coin_b = coin::split(coin_b, amount_b, ctx);
+    pool::repay_add_liquidity(config, pool, coin::into_balance(required_coin_a), coin::into_balance(required_coin_b), receipt);
     }
 
     public entry fun close_position(
