@@ -2,7 +2,7 @@
 
 [move]
 version = 3
-manifest_digest = "F2E7BC825A63BE1E8781A0F83E62A6DD6F8DA0402DE6514491A0C7FF1148A746"
+manifest_digest = "E740C60F6F984843A29605F99426FE7912AB395A7CD8364465A0670932301941"
 deps_digest = "CAFAD8A7CF51067FB4358215BECB86BD100DD64E57C2AC8A7AE7D74B688F5965"
 dependencies = [
   { id = "Bridge", name = "Bridge" },
@@ -26,16 +26,12 @@ dependencies = [
 
 [[move.package]]
 id = "CetusClmm"
-source = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", rev = "mainnet-v1.49.0", subdir = "sui/cetus_clmm" }
+source = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", rev = "testnet-v1.26.0", subdir = "sui/cetus_clmm" }
 
 dependencies = [
-  { id = "Bridge", name = "Bridge" },
-  { id = "DeepBook", name = "DeepBook" },
   { id = "IntegerMate", name = "IntegerMate" },
   { id = "MoveSTL", name = "MoveSTL" },
-  { id = "MoveStdlib", name = "MoveStdlib" },
   { id = "Sui", name = "Sui" },
-  { id = "SuiSystem", name = "SuiSystem" },
 ]
 
 [[move.package]]
@@ -49,7 +45,7 @@ dependencies = [
 
 [[move.package]]
 id = "IntegerMate"
-source = { git = "https://github.com/CetusProtocol/integer-mate.git", rev = "sui-v1.2.0", subdir = "sui" }
+source = { git = "https://github.com/CetusProtocol/integer-mate.git", rev = "testnet-v1.23.1", subdir = "sui" }
 
 dependencies = [
   { id = "Sui", name = "Sui" },
@@ -57,14 +53,10 @@ dependencies = [
 
 [[move.package]]
 id = "MoveSTL"
-source = { git = "https://github.com/CetusProtocol/move-stl.git", rev = "mainnet-v1.48.2", subdir = "sui" }
+source = { git = "https://github.com/CetusProtocol/move-stl.git", rev = "testnet-v1.23.1", subdir = "sui" }
 
 dependencies = [
-  { id = "Bridge", name = "Bridge" },
-  { id = "DeepBook", name = "DeepBook" },
-  { id = "MoveStdlib", name = "MoveStdlib" },
   { id = "Sui", name = "Sui" },
-  { id = "SuiSystem", name = "SuiSystem" },
 ]
 
 [[move.package]]
@@ -107,8 +99,8 @@ flavor = "sui"
 
 [env]
 
-[env.mainnet]
-chain-id = "35834a8a"
-original-published-id = "0x47aa5f637f92704083510d908eaa42e153ac83933e814d4207d047e049e36efe"
-latest-published-id = "0x47aa5f637f92704083510d908eaa42e153ac83933e814d4207d047e049e36efe"
+[env.testnet]
+chain-id = "4c78adac"
+original-published-id = "0x70cdad6bd2dd7533c9ed5e629f619a81c0f14b5c017df1d8f58e7ec4804a014b"
+latest-published-id = "0x70cdad6bd2dd7533c9ed5e629f619a81c0f14b5c017df1d8f58e7ec4804a014b"
 published-version = "1"
